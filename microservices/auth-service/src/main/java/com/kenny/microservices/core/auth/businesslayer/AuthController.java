@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 @Slf4j
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 public class AuthController {
     @Autowired
@@ -48,7 +48,7 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @PostMapping("/api/gateway/auth/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -82,7 +82,7 @@ public class AuthController {
                         "Refresh token is not in database!"));
     }
 */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @PostMapping("/api/gateway/auth/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
